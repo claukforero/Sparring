@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" role="img" aria-label="Ilustración de una agente de atención con diadema contestando una llamada">
+  <rect width="560" height="520" rx="32" fill="#FFE8EC"/>
+  <path d="M0 360 C120 330 220 400 330 370 C420 345 500 360 560 380 V520 H0 Z" fill="#FFCFD8"/>
+  <g fill="none" stroke="#E00B41" stroke-width="7" stroke-linecap="round">
+    <path d="M392 170 q18 24 0 48"/><path d="M418 152 q32 42 0 84"/><path d="M444 134 q46 60 0 120"/>
+  </g>
+  <g transform="translate(40 60)">
+    <rect width="156" height="64" rx="16" fill="#FFFFFF"/>
+    <circle cx="32" cy="32" r="16" fill="#FC642D"/>
+    <text x="32" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="16" fill="#FFFFFF">J</text>
+    <rect x="58" y="20" width="76" height="8" rx="4" fill="#222222"/>
+    <rect x="58" y="36" width="50" height="8" rx="4" fill="#FF385C"/>
+  </g>
+  <path d="M150 520 C150 400 210 360 280 360 C350 360 410 400 410 520 Z" fill="#FF385C"/>
+  <path d="M250 362 L280 410 L310 362 Z" fill="#FFF5EC"/>
+  <rect x="258" y="300" width="44" height="64" rx="16" fill="#C98B63"/>
+  <path d="M206 250 C196 160 236 128 280 128 C330 128 366 160 356 252 L362 330 C330 344 230 344 198 330 Z" fill="#2A1A14"/>
+  <ellipse cx="280" cy="240" rx="64" ry="76" fill="#C98B63"/>
+  <ellipse cx="216" cy="246" rx="12" ry="18" fill="#B87A54"/>
+  <ellipse cx="344" cy="246" rx="12" ry="18" fill="#B87A54"/>
+  <path d="M216 228 C214 170 250 146 284 148 C322 150 346 176 344 222 C320 196 286 186 252 196 C236 202 224 212 216 228 Z" fill="#2A1A14"/>
+  <circle cx="258" cy="246" r="6" fill="#1B1210"/><circle cx="302" cy="246" r="6" fill="#1B1210"/>
+  <path d="M246 228 q12 -8 24 -2" fill="none" stroke="#1B1210" stroke-width="5" stroke-linecap="round"/>
+  <path d="M290 226 q12 -6 24 2" fill="none" stroke="#1B1210" stroke-width="5" stroke-linecap="round"/>
+  <path d="M280 254 q-6 16 4 18" fill="none" stroke="#9E6A47" stroke-width="4" stroke-linecap="round"/>
+  <path d="M262 284 q18 14 36 0" fill="none" stroke="#1B1210" stroke-width="5" stroke-linecap="round"/>
+  <path d="M206 240 C200 150 360 150 354 240" fill="none" stroke="#222222" stroke-width="12" stroke-linecap="round"/>
+  <rect x="190" y="226" width="30" height="46" rx="12" fill="#222222"/>
+  <rect x="340" y="226" width="30" height="46" rx="12" fill="#222222"/>
+  <path d="M355 266 C362 300 340 312 312 300" fill="none" stroke="#222222" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="310" cy="299" r="9" fill="#FC642D"/>
+  <rect x="96" y="440" width="368" height="18" rx="9" fill="#6A3A44"/>
+  <path d="M170 440 L196 380 H364 L390 440 Z" fill="#222222"/>
+  <circle cx="280" cy="410" r="8" fill="#00A699"/>
+</svg>

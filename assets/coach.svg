@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Ilustración del Coach revisando una lista de verificación">
+  <rect width="400" height="400" fill="#F7F1EA"/>
+  <path d="M0 300 C90 280 160 330 250 312 C320 298 360 300 400 310 V400 H0 Z" fill="#EFE3D3"/>
+  <path d="M70 400 C70 300 130 268 190 268 C250 268 310 300 310 400 Z" fill="#222222"/>
+  <rect x="168" y="224" width="44" height="54" rx="14" fill="#8D5A3B"/>
+  <ellipse cx="190" cy="176" rx="60" ry="70" fill="#8D5A3B"/>
+  <ellipse cx="131" cy="182" rx="11" ry="16" fill="#7A4C31"/><ellipse cx="249" cy="182" rx="11" ry="16" fill="#7A4C31"/>
+  <g fill="#1B1210"><circle cx="150" cy="128" r="22"/><circle cx="176" cy="112" r="24"/><circle cx="206" cy="112" r="24"/><circle cx="232" cy="130" r="22"/><circle cx="190" cy="104" r="20"/></g>
+  <circle cx="168" cy="180" r="5.5" fill="#1B1210"/><circle cx="212" cy="180" r="5.5" fill="#1B1210"/>
+  <path d="M156 160 q12 -6 24 0" fill="none" stroke="#1B1210" stroke-width="5" stroke-linecap="round"/>
+  <path d="M200 160 q12 -6 24 0" fill="none" stroke="#1B1210" stroke-width="5" stroke-linecap="round"/>
+  <path d="M190 188 q-5 14 4 16" fill="none" stroke="#6B4129" stroke-width="4" stroke-linecap="round"/>
+  <path d="M170 216 q20 16 40 0" fill="none" stroke="#1B1210" stroke-width="5" stroke-linecap="round"/>
+  <g transform="translate(232 230) rotate(8)">
+    <rect width="120" height="150" rx="12" fill="#FFFFFF"/>
+    <rect x="38" y="-10" width="44" height="20" rx="6" fill="#FF385C"/>
+    <g stroke="#00A699" stroke-width="7" stroke-linecap="round" fill="none"><path d="M18 40 l8 8 l14 -16"/><path d="M18 80 l8 8 l14 -16"/></g>
+    <path d="M18 112 l20 20 M38 112 l-20 20" stroke="#FF385C" stroke-width="7" stroke-linecap="round"/>
+    <g fill="#DDDDDD"><rect x="52" y="34" width="52" height="10" rx="5"/><rect x="52" y="74" width="52" height="10" rx="5"/><rect x="52" y="116" width="52" height="10" rx="5"/></g>
+  </g>
+</svg>

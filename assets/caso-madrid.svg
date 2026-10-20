@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" role="img" aria-label="Baño de un loft en Madrid con la ducha sin agua, un albornoz colgado y un reloj que marca las 7:40">
+  <rect width="1000" height="560" fill="#FFE6DA"/>
+  <!-- azulejos -->
+  <rect x="160" y="0" width="420" height="560" fill="#FFFFFF"/>
+  <g stroke="#ECE6DF" stroke-width="4">
+    <path d="M160 70 H580 M160 140 H580 M160 210 H580 M160 280 H580 M160 350 H580 M160 420 H580 M160 490 H580"/>
+    <path d="M230 0 V560 M300 0 V560 M370 0 V560 M440 0 V560 M510 0 V560"/>
+  </g>
+  <!-- ducha -->
+  <rect x="300" y="50" width="16" height="140" rx="8" fill="#222222"/>
+  <path d="M308 180 h90" stroke="#222222" stroke-width="16" stroke-linecap="round"/>
+  <path d="M376 192 h92 l-14 30 h-64 Z" fill="#222222"/>
+  <g fill="#222222"><circle cx="400" cy="238" r="4"/><circle cx="420" cy="242" r="4"/><circle cx="440" cy="238" r="4"/></g>
+  <g transform="translate(422 350)">
+    <path d="M0 -62 C26 -22 40 0 40 22 a40 40 0 0 1 -80 0 C-40 0 -26 -22 0 -62 Z" fill="#00A699"/>
+    <path d="M-46 44 L46 -32" stroke="#FF385C" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <!-- albornoz colgado -->
+  <circle cx="226" cy="120" r="10" fill="#222222"/>
+  <path d="M196 130 h60 l22 230 h-104 Z" fill="#F4F0EA" stroke="#DDD6CC" stroke-width="4"/>
+  <path d="M226 130 v230" stroke="#DDD6CC" stroke-width="4"/>
+  <path d="M180 250 h92" stroke="#DDD6CC" stroke-width="10" stroke-linecap="round"/>
+  <!-- ventana con tejados -->
+  <rect x="610" y="60" width="230" height="200" rx="14" fill="#222222"/>
+  <rect x="624" y="74" width="202" height="172" rx="8" fill="#BEE6F0"/>
+  <circle cx="790" cy="110" r="18" fill="#FFB400"/>
+  <g fill="#D9643A">
+    <path d="M630 246 V196 l30 -22 l30 22 V246 Z"/><path d="M694 246 V180 l40 -30 l40 30 V246 Z"/><path d="M776 246 V204 l24 -18 l24 18 V246 Z"/>
+  </g>
+  <g fill="#F6E5C8"><rect x="646" y="210" width="14" height="18"/><rect x="718" y="196" width="16" height="22"/><rect x="792" y="214" width="14" height="16"/></g>
+  <!-- reloj 7:40 -->
+  <g transform="translate(724 410)">
+    <circle r="78" fill="#222222"/><circle r="64" fill="#FFFFFF"/>
+    <path d="M0 0 L-20 26" stroke="#222222" stroke-width="9" stroke-linecap="round"/>
+    <path d="M0 0 L-34 -44" stroke="#FF385C" stroke-width="7" stroke-linecap="round"/>
+    <circle r="8" fill="#222222"/>
+  </g>
+</svg>

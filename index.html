@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="es-ES">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sparring para Airbnb Europa</title>
+<meta name="description" content="Concepto de demostración: simulador de llamadas por voz para la formación de agentes nuevos del Contact Center de Airbnb en Europa.">
+<link rel="icon" href="assets/sparring-mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rausch:#FF385C; --rausch-dark:#E00B41;
+  --grad:linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);
+  --ink:#222222; --gray:#6A6A6A; --line:#DDDDDD; --line-2:#B0B0B0; --soft:#F7F7F7;
+  --babu:#00A699; --arches:#FC642D; --blush:#FFF0F3; --sand:#F7F1EA;
+  --font:"Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --shadow:0 6px 16px rgba(0,0,0,.12);
+  --wrap:1280px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:#fff;color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3,h4{margin:0;line-height:1.2}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:8px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 40px}
+@media (max-width:744px){.wrap{padding:0 24px}}
+section{scroll-margin-top:176px}
+.muted{color:var(--gray)}
+hr{border:0;border-top:1px solid var(--line);margin:32px 0}
+
+/* botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 16px var(--font);border:0;border-radius:8px;padding:14px 24px;cursor:pointer;text-decoration:none;transition:transform .1s}
+.btn:active{transform:scale(.97)}
+.btn-brand{background:var(--grad);color:#fff}
+.btn-brand:hover{background:linear-gradient(to right,#D70466,#BD1E59)}
+.btn-line{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.btn-line:hover{background:var(--soft)}
+
+/* encabezado */
+.top{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:24px;height:80px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
+.brand img{width:32px;height:32px;flex:none}
+.brand b{color:var(--rausch);font-weight:800;font-size:22px;letter-spacing:-.01em}
+.brand span{color:var(--gray);font-size:14px;font-weight:600;white-space:nowrap}
+.search{display:flex;align-items:center;border:1px solid var(--line);border-radius:40px;box-shadow:0 1px 2px rgba(0,0,0,.08),0 4px 12px rgba(0,0,0,.05);padding:6px 6px 6px 0;background:#fff}
+.search a{display:block;text-decoration:none;padding:6px 24px;border-right:1px solid var(--line);line-height:1.25;white-space:nowrap}
+.search a:nth-last-child(2){border-right:0}
+.search a b{display:block;font-size:12px;font-weight:800}
+.search a span{font-size:14px;color:var(--gray)}
+.search a:hover span{color:var(--ink)}
+.search .go{width:48px;height:48px;border-radius:50%;background:var(--grad);display:grid;place-items:center;border:0;padding:0;flex:none}
+.search .go svg{width:18px;height:18px}
+.right{display:flex;align-items:center;gap:8px}
+.right > a{font-weight:700;font-size:14px;text-decoration:none;padding:12px 16px;border-radius:24px;white-space:nowrap}
+.right > a:hover{background:var(--soft)}
+details.menu{position:relative}
+details.menu summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:24px;padding:6px 6px 6px 14px}
+details.menu summary::-webkit-details-marker{display:none}
+details.menu summary:hover{box-shadow:0 2px 4px rgba(0,0,0,.18)}
+details.menu summary .av{width:30px;height:30px;border-radius:50%;background:#717171;display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px}
+.menu-panel{position:absolute;right:0;top:52px;width:260px;background:#fff;border-radius:12px;box-shadow:0 2px 16px rgba(0,0,0,.14);padding:8px 0}
+.menu-panel a{display:block;padding:12px 16px;text-decoration:none;font-size:14px}
+.menu-panel a:hover{background:var(--soft)}
+.menu-panel a.strong{font-weight:700}
+.menu-panel hr{margin:8px 0}
+.mobile-search{display:none}
+@media (max-width:1128px){.search a:nth-child(3){display:none}}
+@media (max-width:950px){
+  .search{display:none}
+  .mobile-search{display:flex;align-items:center;gap:12px;flex:1;min-width:0;max-width:420px;border:1px solid var(--line);border-radius:40px;padding:8px 18px;box-shadow:0 3px 10px rgba(0,0,0,.1);text-decoration:none;line-height:1.25}
+  .mobile-search svg{flex:none}
+  .mobile-search div{min-width:0}
+  .mobile-search b,.mobile-search span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mobile-search b{font-size:14px}
+  .mobile-search span{font-size:12px;color:var(--gray)}
+  .brand span,.right > a{display:none}
+}
+@media (max-width:560px){.brand b{display:none}}
+
+/* categorías */
+.cats{display:flex;gap:36px;overflow-x:auto;scrollbar-width:none;padding-top:4px}
+.cats::-webkit-scrollbar{display:none}
+.cats a{display:flex;flex-direction:column;align-items:center;gap:6px;flex:none;text-decoration:none;color:var(--gray);font-size:12px;font-weight:700;padding:10px 0 12px;border-bottom:2px solid transparent;opacity:.8}
+.cats a svg{width:24px;height:24px}
+.cats a:hover{color:var(--ink);opacity:1;border-bottom-color:var(--line)}
+.cats a.active{color:var(--ink);opacity:1;border-bottom-color:var(--ink)}
+
+/* aviso */
+.demo-note{background:var(--soft);border-bottom:1px solid var(--line);font-size:14px;color:var(--gray)}
+.demo-note .wrap{padding-top:10px;padding-bottom:10px}
+.demo-note b{color:var(--ink)}
+
+/* héroe */
+.hero{margin-top:32px}
+.hero-box{background:var(--blush);border-radius:24px;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:56px}
+.hero h1{font-size:clamp(2.2rem,4.4vw,3.5rem);font-weight:800;letter-spacing:-.02em;line-height:1.08}
+.hero p.lead{margin-top:20px;font-size:18px;color:#484848;max-width:56ch}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.facts{display:flex;gap:40px;flex-wrap:wrap;margin-top:36px}
+.facts b{display:block;font-size:22px;font-weight:800}
+.facts span{font-size:14px;color:var(--gray)}
+.hero-art img{border-radius:20px}
+.call{position:relative;margin:-100px 0 0 -40px;width:min(480px,100%);background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:20px;display:grid;grid-template-columns:auto 1fr;gap:18px}
+.call-who{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;min-width:124px}
+.call-who .ring{width:64px;height:64px;border-radius:50%;background:var(--arches);color:#fff;display:grid;place-items:center;font-weight:800;font-size:24px;box-shadow:0 0 0 6px #FFE3D6}
+.call-who strong{margin-top:6px;font-size:15px}
+.call-who small{font-size:12px;color:var(--gray);line-height:1.3}
+.wave{display:flex;align-items:center;gap:4px;height:24px;margin-top:4px}
+.wave i{display:block;width:4px;border-radius:4px;background:var(--rausch);height:8px;animation:pulse 1.1s ease-in-out infinite}
+.wave i:nth-child(2){animation-delay:.12s}.wave i:nth-child(3){animation-delay:.24s}.wave i:nth-child(4){animation-delay:.36s}.wave i:nth-child(5){animation-delay:.48s}.wave i:nth-child(6){animation-delay:.6s}
+@keyframes pulse{0%,100%{height:6px}50%{height:22px}}
+.call-time{font-size:20px;font-weight:800}
+.goals h4{font-size:13px;color:var(--gray);font-weight:700;margin-bottom:8px}
+.goals ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.goals li{border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px;line-height:1.35}
+.goals li b{color:var(--rausch-dark)}
+.call-end{grid-column:1/-1;display:flex;justify-content:center;gap:8px}
+.call-end span{font-size:13px;font-weight:700;padding:8px 16px;border-radius:20px;background:var(--soft)}
+.call-end span.end{background:var(--rausch);color:#fff}
+@media (max-width:950px){.hero-box{grid-template-columns:1fr;padding:32px}.call{margin:-48px auto 0}}
+@media (max-width:520px){.hero-box{padding:24px 20px}.call{grid-template-columns:1fr}.call-who{min-width:0}}
+
+/* bloques genéricos */
+.sec{padding:64px 0}
+.sec h2{font-size:clamp(1.6rem,2.6vw,2rem);font-weight:800;letter-spacing:-.01em}
+.sec .intro{margin-top:8px;color:var(--gray);font-size:17px;max-width:66ch}
+.sec-head{margin-bottom:28px}
+
+/* pasos */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.step{border:1px solid var(--line);border-radius:16px;padding:24px}
+.step .n{width:36px;height:36px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:800}
+.step h3{font-size:18px;font-weight:800;margin-top:18px}
+.step p{margin-top:6px;color:var(--gray);font-size:15px}
+@media (max-width:950px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
+
+/* tarjetas tipo anuncio */
+.listings{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.listing{text-decoration:none;display:block}
+.listing .ph{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:20/19;background:var(--soft)}
+.listing .ph img{width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;left:12px;top:12px;background:#fff;border-radius:20px;padding:6px 12px;font-size:13px;font-weight:800;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+.listing .row{display:flex;justify-content:space-between;gap:12px;margin-top:12px;font-weight:700;font-size:15px}
+.pri{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:14px;white-space:nowrap}
+.pri::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.pri.p1{color:#C13515}.pri.p2{color:#B4590F}.pri.p3{color:#00807A}
+.listing .ln{color:var(--gray);font-size:15px}
+.listing .price{margin-top:6px;font-size:15px}
+.listing .price b{font-weight:800}
+.listing:hover .row span:first-child{text-decoration:underline}
+@media (max-width:950px){.listings{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.listings{grid-template-columns:1fr}}
+
+/* ficha de caso */
+.case{padding:56px 0 64px;border-top:1px solid var(--line)}
+.case h2{font-size:clamp(1.5rem,2.4vw,1.75rem);font-weight:800}
+.sub{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:8px;font-size:14px;font-weight:700}
+.sub span{text-decoration:underline}
+.sub .pri{text-decoration:none}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px;height:420px;border-radius:12px;overflow:hidden;margin-top:24px}
+.gallery > img{width:100%;height:100%;object-fit:cover}
+.gallery .small{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:8px;min-height:0}
+.gallery .small img{width:100%;height:100%;object-fit:cover;min-height:0}
+.tile{display:flex;flex-direction:column;justify-content:flex-end;padding:20px;min-height:0}
+.tile b{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;line-height:1}
+.tile span{margin-top:6px;font-size:14px;font-weight:600}
+.t-teal{background:#D7F2EE;color:#005F5A}.t-orange{background:#FFE6DA;color:#8A3410}.t-rose{background:#FFE8EC;color:#A3112E}.t-night{background:#262A40;color:#fff}
+@media (max-width:744px){.gallery{grid-template-columns:1fr;height:auto}.gallery .small{display:none}.gallery > img{aspect-ratio:16/10}}
+
+.case-body{display:grid;grid-template-columns:minmax(0,1fr) 372px;gap:80px;margin-top:40px;align-items:start}
+@media (max-width:1128px){.case-body{gap:48px;grid-template-columns:minmax(0,1fr) 340px}}
+@media (max-width:950px){.case-body{grid-template-columns:1fr;gap:24px}}
+.host{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.host h3{font-size:22px;font-weight:700}
+.host p{color:var(--gray);margin-top:2px}
+.host img{width:56px;height:56px;border-radius:50%;flex:none}
+.hl{list-style:none;margin:0;padding:0;display:grid;gap:22px}
+.hl li{display:grid;grid-template-columns:28px 1fr;gap:16px}
+.hl svg{width:26px;height:26px}
+.hl b{display:block;font-size:16px}
+.hl span{color:var(--gray);font-size:14px}
+.block-title{font-size:22px;font-weight:700;margin-bottom:16px}
+.brief{font-size:16px;line-height:1.6}
+.mini{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+.mini div{border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13px;color:var(--gray);min-width:0}
+.mini b{display:block;color:var(--ink);font-size:16px;white-space:nowrap}
+@media (max-width:620px){.mini{grid-template-columns:1fr 1fr}}
+.howto{list-style:none;margin:0;padding:0;counter-reset:h}
+.howto li{counter-increment:h;display:grid;grid-template-columns:40px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.howto li:last-child{border-bottom:0}
+.howto li::before{content:counter(h);width:32px;height:32px;border-radius:50%;border:1px solid var(--ink);display:grid;place-items:center;font-weight:800;font-size:14px}
+.howto b{display:block}
+.howto span{color:var(--gray);font-size:15px}
+
+details.coach{border:1px solid var(--line);border-radius:16px;margin-top:8px}
+details.coach summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:18px 20px}
+details.coach summary::-webkit-details-marker{display:none}
+details.coach summary img{width:52px;height:52px;border-radius:50%}
+details.coach summary b{display:block;font-size:17px}
+details.coach summary small{color:var(--gray);font-size:14px}
+details.coach summary .chev{margin-left:auto;width:20px;height:20px;transition:transform .2s;flex:none}
+details.coach[open] summary .chev{transform:rotate(180deg)}
+.coach-body{padding:0 20px 20px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cc{background:var(--soft);border-radius:12px;padding:16px 18px}
+.cc h4{font-size:15px;margin-bottom:10px}
+.cc ul{margin:0;padding-left:18px;display:grid;gap:8px;font-size:15px}
+.cc.say ul{list-style:none;padding-left:0}
+.cc.say li{border-left:3px solid var(--babu);padding-left:12px}
+.cc.full{grid-column:1/-1;background:#FFF0F3}
+.cc.full h4{color:#A3112E}
+.cc.full li::marker{color:var(--rausch)}
+@media (max-width:620px){.coach-body{grid-template-columns:1fr}}
+
+/* tarjeta lateral tipo reserva */
+.book{position:sticky;top:176px}
+.book-card{border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:24px}
+.book-price{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.book-price b{font-size:22px;font-weight:800}
+.book-price span{color:var(--gray)}
+.book-box{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line-2);border-radius:8px;margin-top:20px}
+.book-box div{padding:10px 12px}
+.book-box div + div{border-left:1px solid var(--line-2)}
+.book-box small{display:block;font-size:11px;font-weight:800}
+.book-box span{font-size:14px}
+.book-card .btn{width:100%;margin-top:16px;padding:14px}
+.book-card .btn[aria-pressed="true"]{box-shadow:0 0 0 3px #fff inset}
+.center{text-align:center;font-size:14px;color:var(--gray);margin-top:12px}
+.status{font-size:14px;font-weight:700;margin-top:10px;min-height:1.2em}
+.rows{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:12px}
+.rows li{display:flex;justify-content:space-between;gap:12px;font-size:15px}
+.rows li span:first-child{text-decoration:underline}
+.rows li.no b{color:#C13515}
+.total{display:flex;justify-content:space-between;gap:12px;font-weight:800;border-top:1px solid var(--line);margin-top:20px;padding-top:20px;font-size:15px}
+.total span:last-child{text-align:right}
+.book-foot{display:flex;gap:12px;align-items:flex-start;margin-top:20px;font-size:14px;color:var(--gray);padding:0 4px}
+.book-foot svg{width:20px;height:20px;flex:none;margin-top:1px}
+@media (max-width:950px){.book{position:static}}
+
+/* tabla */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:16px}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th,td{text-align:left;padding:16px 20px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15px}
+thead th{font-weight:800;background:var(--soft)}
+thead th:nth-child(2),tbody td:nth-child(2){background:#FFF7F8}
+tbody tr:last-child td{border-bottom:0}
+td:first-child{font-weight:700}
+td.no{color:#C13515;font-weight:800}
+
+/* rúbrica estilo valoraciones */
+.rubric{display:grid;grid-template-columns:300px 1fr;gap:64px;align-items:start}
+.score{display:flex;flex-direction:column;align-items:center;text-align:center}
+.score img{width:180px;height:180px;border-radius:50%;margin-bottom:16px}
+.score b{font-size:64px;font-weight:800;line-height:1}
+.score span{font-weight:700;margin-top:6px}
+.score small{color:var(--gray);margin-top:4px;font-size:14px}
+.ratings{display:grid;grid-template-columns:1fr 1fr;gap:28px 64px}
+.rt{display:grid;grid-template-columns:1fr 120px 28px;gap:12px;align-items:center;font-size:15px}
+.rt i{display:block;height:4px;background:var(--line);border-radius:2px;position:relative;overflow:hidden}
+.rt i::after{content:"";position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--ink);border-radius:2px}
+.rt b{text-align:right;font-weight:800}
+.critical{margin-top:36px;border:1px solid var(--line);border-radius:16px;padding:20px 24px;display:flex;gap:16px;align-items:flex-start}
+.critical svg{width:28px;height:28px;flex:none}
+@media (max-width:950px){.rubric{grid-template-columns:1fr;gap:32px}.ratings{grid-template-columns:1fr;gap:20px}}
+@media (max-width:460px){.rt{grid-template-columns:1fr 70px 24px}}
+
+/* preguntas */
+.faq{max-width:860px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:20px 0;font-weight:700;font-size:17px;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:22px;line-height:1;font-weight:400}
+.faq details[open] summary::after{content:"–"}
+.faq details p{padding:0 0 20px;color:var(--gray);max-width:70ch}
+
+/* pie */
+footer{background:var(--soft);border-top:1px solid var(--line);margin-top:48px}
+.foot-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:48px 0 32px}
+.foot-cols h4{font-size:14px;font-weight:800;margin-bottom:12px}
+.foot-cols a{display:block;font-size:14px;text-decoration:none;padding:4px 0}
+.foot-cols a:hover{text-decoration:underline}
+.foot-legal{border-top:1px solid var(--line);padding:24px 0 40px;font-size:14px;color:var(--gray)}
+.foot-legal p + p{margin-top:8px}
+@media (max-width:744px){.foot-cols{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="bar">
+      <a class="brand" href="#inicio" aria-label="Sparring, ir al inicio">
+        <img src="assets/sparring-mark.svg" alt=""><b>sparring</b><span>para Airbnb Europa</span>
+      </a>
+
+      <nav class="search" aria-label="Buscar un caso">
+        <a href="#casos"><b>Nivel</b><span>Del 1 al 3</span></a>
+        <a href="#casos"><b>Ciudad</b><span>Valencia, Madrid, Marbella</span></a>
+        <a href="#casos"><b>Duración</b><span>5 a 10 min</span></a>
+        <a class="go" href="#casos" aria-label="Ver los casos">
+          <svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><circle cx="13" cy="13" r="9"/><path d="M20 20l8 8"/></svg>
+        </a>
+      </nav>
+
+      <a class="mobile-search" href="#casos">
+        <svg width="18" height="18" viewBox="0 0 32 32" fill="none" stroke="#222" stroke-width="4" stroke-linecap="round"><circle cx="13" cy="13" r="9"/><path d="M20 20l8 8"/></svg>
+        <div><b>Elige un caso</b><span>Valencia, Madrid, Marbella</span></div>
+      </a>
+
+      <div class="right">
+        <a href="#casos">Practicar ahora</a>
+        <details class="menu">
+          <summary aria-label="Abrir menú">
+            <svg width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="#222" stroke-width="3"><path d="M2 16h28M2 8h28M2 24h28"/></svg>
+            <span class="av" aria-hidden="true">TÚ</span>
+          </summary>
+          <div class="menu-panel">
+            <a class="strong" href="#casos">Elegir un caso</a>
+            <a class="strong" href="#como-funciona">Cómo funciona</a>
+            <hr>
+            <a href="#caso-n1">Lucía, Valencia</a>
+            <a href="#caso-n2">Javier, Madrid</a>
+            <a href="#caso-n3">Mariana, Marbella</a>
+            <hr>
+            <a href="#limites">Tus límites de autorización</a>
+            <a href="#coach">Cómo te evalúa el Coach</a>
+            <a href="#preguntas">Preguntas frecuentes</a>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <nav class="cats" aria-label="Secciones">
+      <a href="#casos" data-spy="casos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Todos los casos</a>
+      <a href="#caso-n1" data-spy="caso-n1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 9a15 15 0 0 1 20 0"/><path d="M5.5 12.5a10 10 0 0 1 13 0"/><path d="M9 16a5 5 0 0 1 6 0"/><circle cx="12" cy="19.5" r="1" fill="currentColor"/></svg>Wifi en Valencia</a>
+      <a href="#caso-n2" data-spy="caso-n2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 2.5C15.5 7.5 18 11 18 14.5a6 6 0 0 1-12 0C6 11 8.5 7.5 12 2.5Z"/><path d="M4 20 20 6" stroke-linecap="round"/></svg>Sin agua en Madrid</a>
+      <a href="#caso-n3" data-spy="caso-n3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 2.5 4 5.5v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10v-6Z"/><path d="M9 12l2 2 4-4" stroke-linecap="round"/></svg>Seguridad en Marbella</a>
+      <a href="#limites" data-spy="limites"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M17 5.5A7.5 7.5 0 1 0 17 18.5"/><path d="M4 10h9M4 14h9"/></svg>Tus límites</a>
+      <a href="#coach" data-spy="coach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2.5h6V4" /><path d="M8.5 10.5l1.5 1.5 3-3M8.5 16h7" stroke-linecap="round"/></svg>El Coach</a>
+      <a href="#preguntas" data-spy="preguntas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.6v.6"/><circle cx="12" cy="17" r=".9" fill="currentColor"/></svg>Preguntas</a>
+    </nav>
+  </div>
+</header>
+
+<div class="demo-note" role="note">
+  <div class="wrap"><b>Concepto de demostración.</b> Simulador de formación propuesto para el Contact Center de Airbnb en Europa. Las políticas, reservas e importes son ficticios.</div>
+</div>
+
+<main id="inicio">
+
+<section class="hero" aria-labelledby="t-hero">
+  <div class="wrap">
+    <div class="hero-box">
+      <div>
+        <h1 id="t-hero">Atiende tu primera llamada difícil antes de la real.</h1>
+        <p class="lead">Sparring es un simulador de voz para agentes nuevos. Te llama un huésped con un problema real, lo resuelves con la política y, al colgar, el Coach te dice qué has hecho bien, qué cambiar y cuánto has ofrecido frente a lo que correspondía.</p>
+        <div class="hero-actions">
+          <a class="btn btn-brand" href="#casos">Elegir un caso</a>
+          <a class="btn btn-line" href="#como-funciona">Ver cómo funciona</a>
+        </div>
+        <div class="facts">
+          <div><b>3 niveles</b><span>de básico a crítico</span></div>
+          <div><b>10 minutos</b><span>por práctica</span></div>
+          <div><b>De 70 a 52 días</b><span>objetivo de formación</span></div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <img src="assets/hero-agente.svg" alt="Ilustración de una agente con diadema atendiendo una llamada" width="560" height="520">
+        <div class="call" aria-label="Ejemplo de pantalla de llamada de práctica">
+          <div class="call-who">
+            <div class="ring" aria-hidden="true">J</div>
+            <strong>Javier Ortega</strong>
+            <small>Huésped en el barrio de Salamanca, Madrid</small>
+            <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="call-time">06:05</div>
+            <small>tiempo restante</small>
+          </div>
+          <div class="goals">
+            <h4>Objetivos de esta llamada</h4>
+            <ul>
+              <li>Descarta un riesgo de seguridad en el <b>primer minuto</b>.</li>
+              <li>Ofrece una solución que le sirva <b>antes de las 9:00</b>.</li>
+              <li>Mantén el reembolso dentro de tu tope de <b>300 €</b>.</li>
+            </ul>
+          </div>
+          <div class="call-end"><span>Silenciar</span><span class="end">Finalizar</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="como-funciona" aria-labelledby="t-como">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="t-como">Así funciona una práctica</h2>
+      <p class="intro">Cada sesión dura unos diez minutos y puedes repetir el mismo caso tantas veces como quieras.</p>
+    </div>
+    <div class="steps">
+      <article class="step"><div class="n">1</div><h3>Elige un caso</h3><p>Empieza por el nivel básico. Lee lo que sabes del huésped antes de contestar.</p></article>
+      <article class="step"><div class="n">2</div><h3>Contesta la llamada</h3><p>El huésped habla, te interrumpe y se enfada o se angustia según cómo lo atiendas.</p></article>
+      <article class="step"><div class="n">3</div><h3>Resuelve con la política</h3><p>Ofrece soluciones reales e importes dentro de tu tope. Escala lo que no te toca decidir.</p></article>
+      <article class="step"><div class="n">4</div><h3>Escucha al Coach</h3><p>Di «fin de la simulación». Recibes tu puntuación, dos aciertos y lo que debes cambiar.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="casos" aria-labelledby="t-casos" style="padding-top:16px">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="t-casos">Elige tu caso</h2>
+      <p class="intro">Tres huéspedes, tres ciudades de España y tres niveles. Pasa al siguiente cuando apruebes con 75 puntos o más.</p>
+    </div>
+    <div class="listings">
+      <a class="listing" href="#caso-n1">
+        <div class="ph"><img src="assets/caso-valencia.svg" alt="Fachada de un piso en Ruzafa con una portátil sin internet"><span class="badge">Nivel 1, básico</span></div>
+        <div class="row"><span>Valencia, España</span><span class="pri p3">Prioridad media</span></div>
+        <p class="ln">Lucía, diseñadora freelance</p>
+        <p class="ln">Sin internet antes de una videollamada</p>
+        <p class="price"><b>29 €</b> por noche afectada</p>
+      </a>
+      <a class="listing" href="#caso-n2">
+        <div class="ph"><img src="assets/caso-madrid.svg" alt="Ducha sin agua y reloj a las 7:40 en un loft de Madrid"><span class="badge">Nivel 2, intermedio</span></div>
+        <div class="row"><span>Madrid, España</span><span class="pri p2">Prioridad alta</span></div>
+        <p class="ln">Javier, director comercial</p>
+        <p class="ln">Sin agua dos horas antes de una reunión</p>
+        <p class="price"><b>115 €</b> por la mañana afectada</p>
+      </a>
+      <a class="listing" href="#caso-n3">
+        <div class="ph"><img src="assets/caso-marbella.svg" alt="Casa de noche en Marbella con la verja de la urbanización abierta"><span class="badge">Nivel 3, complejo</span></div>
+        <div class="row"><span>Marbella, España</span><span class="pri p1">Prioridad crítica</span></div>
+        <p class="ln">Mariana, viaja con su hija</p>
+        <p class="ln">Intento de entrada de noche</p>
+        <p class="price"><b>112</b> si el peligro es inminente</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CASO N1 · VALENCIA ================= -->
+<section class="case" id="caso-n1" aria-labelledby="t-n1">
+  <div class="wrap">
+    <h2 id="t-n1">Lucía no tiene internet y presenta a las 12:30</h2>
+    <div class="sub"><span class="pri p3">Prioridad media (P3)</span><span>Ruzafa, Valencia</span><span>9:30, hora peninsular</span><span>Nivel 1 de 3</span></div>
+    <div class="gallery">
+      <img src="assets/caso-valencia.svg" alt="Fachada modernista en Ruzafa con una portátil sin conexión">
+      <div class="small">
+        <img src="assets/persona-lucia.svg" alt="Retrato ilustrado de Lucía">
+        <div class="tile t-teal"><b>12:30</b><span>Videollamada con un cliente de Londres</span></div>
+        <div class="tile t-rose"><b>2 de 7</b><span>noches ya disfrutadas</span></div>
+        <img src="assets/coach.svg" alt="Ilustración del Coach">
+      </div>
+    </div>
+
+    <div class="case-body">
+      <div>
+        <div class="host">
+          <div><h3>Huésped: Lucía Romero</h3><p>Sevillana, vive en Madrid. Diseñadora de experiencia de usuario freelance.</p></div>
+          <img src="assets/persona-lucia.svg" alt="">
+        </div>
+        <hr>
+        <ul class="hl">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.8" stroke-linecap="round"><path d="M2 9a15 15 0 0 1 20 0"/><path d="M5.5 12.5a10 10 0 0 1 13 0"/><path d="M9 16a5 5 0 0 1 6 0"/></svg><div><b>Un servicio destacado no funciona</b><span>El anuncio prometía fibra óptica de 600 Mb y escritorio. No es un riesgo de seguridad.</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M8.5 15c1.8-1.4 5.2-1.4 7 0M9 9.5h.01M15 9.5h.01"/></svg><div><b>Molesta pero razonable</b><span>Educada. Si nota que no le hacen caso, se pone seca e irónica.</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 7v5l3 2"/></svg><div><b>De 5 a 7 minutos</b><span>El caso más corto. Ideal para tu primera práctica.</span></div></li>
+        </ul>
+        <hr>
+        <h3 class="block-title">Lo que sabes al contestar</h3>
+        <p class="brief">Lucía trabaja en remoto para clientes de Reino Unido y España. Reservó un piso en Ruzafa porque el anuncio destacaba la conexión a internet y el escritorio. Lleva dos de siete noches. El resto lo descubres preguntando.</p>
+        <div class="mini">
+          <div>Reserva<b>HMQX7R4B2N</b></div>
+          <div>Total pagado<b>862 €</b></div>
+          <div>Precio por noche<b>100 €</b></div>
+          <div>Noches<b>7</b></div>
+        </div>
+        <hr>
+        <h3 class="block-title">Cómo tratar el caso</h3>
+        <ol class="howto">
+          <li><div><b>Escúchala entera y descarta un riesgo de seguridad.</b><span>Es un servicio que falla, no un peligro. Clasifícalo como prioridad media.</span></div></li>
+          <li><div><b>Pregunta si tiene un compromiso con hora fija.</b><span>La hora decide qué solución le sirve. En este caso lo cambia todo.</span></div></li>
+          <li><div><b>Revisa los mensajes con el anfitrión.</b><span>Fíjate en cuánto tiempo lleva sin respuesta: la ventana de 4 horas puede haber vencido.</span></div></li>
+          <li><div><b>Haz un diagnóstico mínimo.</b><span>Luces del router, reinicio de 30 segundos y otros dispositivos. Dos minutos como máximo.</span></div></li>
+          <li><div><b>Contacta tú con el anfitrión y dale un plazo.</b><span>Que dé parte de la avería a la operadora. Nunca le pidas a la huésped que insista ella.</span></div></li>
+          <li><div><b>Ofrece una solución que funcione antes de su compromiso.</b><span>Un pase de día en un coworking es un gasto imprevisto que puedes cubrir con tique.</span></div></li>
+          <li><div><b>Compensa en proporción.</b><span>25 % por cada noche afectada, más la parte proporcional de la tarifa de servicio.</span></div></li>
+          <li><div><b>Acuerda el siguiente contacto y cierra.</b><span>Si en 24 horas no se resuelve, se ofrece una reubicación con espacio de trabajo.</span></div></li>
+        </ol>
+        <details class="coach">
+          <summary><img src="assets/coach.svg" alt=""><div><b>Recomendaciones del Coach</b><small>Léelas después de tu primer intento</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2.4" stroke-linecap="round"><path d="M5 9l7 7 7-7"/></svg></summary>
+          <div class="coach-body">
+            <div class="cc say"><h4>Frases que funcionan</h4><ul>
+              <li>«Yo me encargo de escribir a su anfitrión; usted no tiene que hacerlo.»</li>
+              <li>«Le cubrimos un pase de día en un coworking, hasta 60 euros con el tique.»</li>
+              <li>«Por la noche sin internet le aplico 29 euros.»</li>
+            </ul></div>
+            <div class="cc"><h4>Evita</h4><ul>
+              <li>«Es solo el internet.»</li>
+              <li>Proponer los datos del móvil como respuesta final.</li>
+              <li>Hacerle repetir lo que ya te ha contado.</li>
+            </ul></div>
+            <div class="cc full"><h4>Errores que suspenden la práctica</h4><ul>
+              <li>Aceptar devolverle la mitad de la estancia (unos 431 €). Supera tu tope y la política.</li>
+              <li>Reubicarla de inmediato sin contactar con el anfitrión.</li>
+              <li>Dejarla sin solución para su videollamada de las 12:30.</li>
+            </ul></div>
+          </div>
+        </details>
+      </div>
+
+      <aside class="book" aria-label="Llamada de práctica con Lucía">
+        <div class="book-card">
+          <div class="book-price"><b>300 €</b><span>tu tope por reserva</span></div>
+          <div class="book-box"><div><small>Nivel</small><span>1, básico</span></div><div><small>Duración</small><span>5 a 7 min</span></div></div>
+          <button class="btn btn-brand" data-case="n1" data-name="Lucía" aria-pressed="false">Llamar a Lucía</button>
+          <p class="status" role="status" id="status-n1"></p>
+          <p class="center">Usa auriculares y saluda tú primero.</p>
+          <ul class="rows">
+            <li><span>Reembolso parcial</span><b>hasta 300 €</b></li>
+            <li><span>Gastos con tique</span><b>hasta 60 €</b></li>
+            <li><span>Reubicación</span><b>tras 24 h</b></li>
+            <li class="no"><span>Mitad de la estancia</span><b>no</b></li>
+          </ul>
+          <div class="total"><span>Referencia de política</span><span>29 € por noche + coworking</span></div>
+        </div>
+        <p class="book-foot"><svg viewBox="0 0 24 24" fill="none" stroke="#6A6A6A" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6M12 7.5h.01"/></svg>Al terminar, di «fin de la simulación» para escuchar al Coach.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CASO N2 · MADRID ================= -->
+<section class="case" id="caso-n2" aria-labelledby="t-n2">
+  <div class="wrap">
+    <h2 id="t-n2">Javier está en albornoz, sin agua y con una reunión a las 9:30</h2>
+    <div class="sub"><span class="pri p2">Prioridad alta (P2)</span><span>Barrio de Salamanca, Madrid</span><span>7:40, hora peninsular</span><span>Nivel 2 de 3</span></div>
+    <div class="gallery">
+      <img src="assets/caso-madrid.svg" alt="Baño sin agua, albornoz colgado y reloj a las 7:40">
+      <div class="small">
+        <img src="assets/persona-javier.svg" alt="Retrato ilustrado de Javier en albornoz">
+        <div class="tile t-orange"><b>9:00</b><span>Hora límite para salir hacia la Castellana</span></div>
+        <div class="tile t-rose"><b>980 €</b><span>Lo que cuesta el error más común</span></div>
+        <img src="assets/coach.svg" alt="Ilustración del Coach">
+      </div>
+    </div>
+
+    <div class="case-body">
+      <div>
+        <div class="host">
+          <div><h3>Huésped: Javier Ortega</h3><p>Bilbaíno. Director comercial de una empresa de logística, de viaje de trabajo.</p></div>
+          <img src="assets/persona-javier.svg" alt="">
+        </div>
+        <hr>
+        <ul class="hl">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.8" stroke-linejoin="round"><path d="M12 2.5C15.5 7.5 18 11 18 14.5a6 6 0 0 1-12 0C6 11 8.5 7.5 12 2.5Z"/></svg><div><b>Un suministro esencial falla</b><span>No sale agua de ningún grifo. El alojamiento no se puede usar con normalidad.</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M8.5 16c1.8-1.6 5.2-1.6 7 0M8 9l2.5 1M16 9l-2.5 1"/></svg><div><b>Enfadado y con prisa</b><span>Te cortará si usas frases de manual y mirará el reloj en voz alta.</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 7v5l3 2"/></svg><div><b>De 7 a 10 minutos</b><span>El caso recomendado para la demostración.</span></div></li>
+        </ul>
+        <hr>
+        <h3 class="block-title">Lo que sabes al contestar</h3>
+        <p class="brief">Javier viajó a Madrid para una semana de reuniones y llegó anoche en el último vuelo desde Bilbao. Es su primera mañana de cuatro noches en un loft del barrio de Salamanca. Va a exigir mucho y rápido.</p>
+        <div class="mini">
+          <div>Reserva<b>HMT3K9WQ5L</b></div>
+          <div>Total pagado<b>980 €</b></div>
+          <div>Precio por noche<b>200 €</b></div>
+          <div>Noches<b>4</b></div>
+        </div>
+        <hr>
+        <h3 class="block-title">Cómo tratar el caso</h3>
+        <ol class="howto">
+          <li><div><b>Deja que termine su primera queja.</b><span>Interrumpirle aumenta su enfado. Escúchale entero.</span></div></li>
+          <li><div><b>Descarta un riesgo y pregunta su hora límite.</b><span>Sin agua es prioridad alta. Con el tráfico de Madrid, ¿a qué hora tiene que salir?</span></div></li>
+          <li><div><b>Revisa los mensajes de la reserva antes de proponer nada.</b><span>Lo que encuentres ahí cambia la conversación. Explícaselo sin culparle.</span></div></li>
+          <li><div><b>No condiciones la ayuda a que baje a hablar con el portero.</b><span>Puedes preguntar si hay conserje; quien lo gestiona con el edificio es la anfitriona.</span></div></li>
+          <li><div><b>Ofrécele una solución antes de salir.</b><span>Una ducha en un gimnasio u hotel cercano es un gasto imprevisto que puedes cubrir con tique.</span></div></li>
+          <li><div><b>Compensa y dilo en euros.</b><span>50 % de la noche afectada más su parte de la tarifa de servicio. Ofrece crédito o reembolso a la tarjeta.</span></div></li>
+          <li><div><b>Contacta con la anfitriona y fija un punto de control.</b><span>Una hora concreta. Si el agua no vuelve, se pasa a una reubicación comparable.</span></div></li>
+          <li><div><b>Si pide más que tu tope, di lo que sí puedes hacer y escala.</b><span>El hotel de lujo y las cuatro noches no son decisiones tuyas.</span></div></li>
+        </ol>
+        <details class="coach">
+          <summary><img src="assets/coach.svg" alt=""><div><b>Recomendaciones del Coach</b><small>Léelas después de tu primer intento</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2.4" stroke-linecap="round"><path d="M5 9l7 7 7-7"/></svg></summary>
+          <div class="coach-body">
+            <div class="cc say"><h4>Frases que funcionan</h4><ul>
+              <li>«Tiene una reunión a las 9:30 y no se puede duchar. Lo resolvemos ahora mismo.»</li>
+              <li>«Hay un hotel cerca con pase de día a su gimnasio; se lo reembolsamos con el tique, hasta 60 euros.»</li>
+              <li>«Por la mañana sin agua le aplico 115 euros. Le llamo a las 14:15.»</li>
+            </ul></div>
+            <div class="cc"><h4>Evita</h4><ul>
+              <li>«Entiendo su malestar» sin una acción concreta detrás.</li>
+              <li>«Es la política» sin traducirla a su caso.</li>
+              <li>Silencios de más de 20 segundos sin explicar qué haces.</li>
+            </ul></div>
+            <div class="cc full"><h4>Errores que suspenden la práctica</h4><ul>
+              <li>Aprobar el reembolso de las cuatro noches (980 €) o un hotel de categoría superior.</li>
+              <li>Dejarle sin solución antes de las 9:00.</li>
+              <li>Insistir en que baje a hablar con el portero o culparle por no leer un mensaje.</li>
+            </ul></div>
+          </div>
+        </details>
+      </div>
+
+      <aside class="book" aria-label="Llamada de práctica con Javier">
+        <div class="book-card">
+          <div class="book-price"><b>300 €</b><span>tu tope por reserva</span></div>
+          <div class="book-box"><div><small>Nivel</small><span>2, intermedio</span></div><div><small>Duración</small><span>7 a 10 min</span></div></div>
+          <button class="btn btn-brand" data-case="n2" data-name="Javier" aria-pressed="false">Llamar a Javier</button>
+          <p class="status" role="status" id="status-n2"></p>
+          <p class="center">Usa auriculares y saluda tú primero.</p>
+          <ul class="rows">
+            <li><span>Reembolso parcial</span><b>hasta 300 €</b></li>
+            <li><span>Gastos con tique</span><b>hasta 60 €</b></li>
+            <li><span>Diferencia en reubicación</span><b>50 € por noche</b></li>
+            <li class="no"><span>Reembolso total u hotel superior</span><b>no</b></li>
+          </ul>
+          <div class="total"><span>Referencia de política</span><span>115 € + ducha externa</span></div>
+        </div>
+        <p class="book-foot"><svg viewBox="0 0 24 24" fill="none" stroke="#6A6A6A" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6M12 7.5h.01"/></svg>Al terminar, di «fin de la simulación» para escuchar al Coach.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CASO N3 · MARBELLA ================= -->
+<section class="case" id="caso-n3" aria-labelledby="t-n3">
+  <div class="wrap">
+    <h2 id="t-n3">Alguien ha intentado entrar y Mariana está sola con su hija</h2>
+    <div class="sub"><span class="pri p1">Prioridad crítica (P1)</span><span>Marbella, Málaga</span><span>23:10, hora peninsular</span><span>Nivel 3 de 3</span></div>
+    <div class="gallery">
+      <img src="assets/caso-marbella.svg" alt="Casa encalada de noche con la verja abierta y la garita vacía">
+      <div class="small">
+        <img src="assets/persona-mariana.svg" alt="Retrato ilustrado de Mariana al teléfono">
+        <div class="tile t-night"><b>112</b><span>Si el peligro es inminente</span></div>
+        <div class="tile t-rose"><b>Sin espera</b><span>en ningún momento de la llamada</span></div>
+        <img src="assets/coach.svg" alt="Ilustración del Coach">
+      </div>
+    </div>
+
+    <div class="case-body">
+      <div>
+        <div class="host">
+          <div><h3>Huésped: Mariana Castillo</h3><p>Vallisoletana, contable. Viaja de vacaciones con su hija de 8 años.</p></div>
+          <img src="assets/persona-mariana.svg" alt="">
+        </div>
+        <hr>
+        <ul class="hl">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.8" stroke-linejoin="round"><path d="M12 2.5 4 5.5v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10v-6Z"/></svg><div><b>Riesgo para la seguridad física</b><span>Hay una menor en el alojamiento, es de noche y no conoce la ciudad.</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M9 16h6M8.5 10l2 .5M15.5 10l-2 .5"/></svg><div><b>Angustia y miedo, no enfado</b><span>Habla bajito y rápido porque su hija duerme. No confundas calma con poca gravedad.</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 7v5l3 2"/></svg><div><b>De 6 a 9 minutos</b><span>El caso menos frecuente y el que no se puede fallar.</span></div></li>
+        </ul>
+        <hr>
+        <h3 class="block-title">Lo que sabes al contestar</h3>
+        <p class="brief">Es su primera noche en una casa anunciada en una urbanización privada con vigilancia. Llama de noche y mezcla el miedo con la queja por el anuncio. Tu trabajo es separar las dos cosas: primero la persona.</p>
+        <div class="mini">
+          <div>Reserva<b>HMP8D2ZV6C</b></div>
+          <div>Total pagado<b>1.040 €</b></div>
+          <div>Acompañante<b>Hija, 8 años</b></div>
+          <div>Emergencias<b>112</b></div>
+        </div>
+        <hr>
+        <h3 class="block-title">Cómo tratar el caso</h3>
+        <ol class="howto">
+          <li><div><b>En los primeros 30 segundos, pregunta si está a salvo.</b><span>¿La persona sigue ahí? ¿La puerta está cerrada? ¿Quién está con usted? Una pregunta cada vez.</span></div></li>
+          <li><div><b>Si hay peligro inminente, que llame al 112.</b><span>Tú te quedas en línea. No prometas que va la policía.</span></div></li>
+          <li><div><b>Da instrucciones cortas de resguardo.</b><span>Pestillo echado, en la habitación del fondo con su hija, móvil cargando, no abrir a nadie.</span></div></li>
+          <li><div><b>Comprométete con un lugar seguro para esta noche.</b><span>Lo cubre la plataforma. El taxi, hasta 80 €, la recoge en la puerta: nunca la mandes a la calle.</span></div></li>
+          <li><div><b>Haz el traspaso en caliente al Equipo de Seguridad.</b><span>Sin colgar. Resume quién, qué ha pasado, dónde y qué has comprometido.</span></div></li>
+          <li><div><b>Deja el anuncio y el dinero para después.</b><span>La política contempla el reembolso total en estos casos; lo formaliza Seguridad.</span></div></li>
+        </ol>
+        <details class="coach">
+          <summary><img src="assets/coach.svg" alt=""><div><b>Recomendaciones del Coach</b><small>Léelas después de tu primer intento</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2.4" stroke-linecap="round"><path d="M5 9l7 7 7-7"/></svg></summary>
+          <div class="coach-body">
+            <div class="cc say"><h4>Frases que funcionan</h4><ul>
+              <li>«Estoy aquí con usted y no voy a colgar.»</li>
+              <li>«Lo primero es que usted y su hija estén bien; lo demás lo resolvemos nosotros.»</li>
+              <li>«Ahora mismo lo único que necesito que haga es…»</li>
+            </ul></div>
+            <div class="cc"><h4>Evita</h4><ul>
+              <li>«Cálmese» o «no exagere».</li>
+              <li>«¿Ya ha hablado con su anfitrión?»</li>
+              <li>Hablar de reembolsos antes de que esté a salvo.</li>
+            </ul></div>
+            <div class="cc full"><h4>Errores que suspenden la práctica</h4><ul>
+              <li>Ponerla en espera o colgar para devolverle la llamada.</li>
+              <li>Pedir fotos o pruebas antes de ponerla a salvo.</li>
+              <li>No indicar el 112 si el peligro vuelve durante la llamada.</li>
+              <li>Ofrecer reubicación solo para mañana o mandarla a la calle a por un taxi.</li>
+            </ul></div>
+          </div>
+        </details>
+      </div>
+
+      <aside class="book" aria-label="Llamada de práctica con Mariana">
+        <div class="book-card">
+          <div class="book-price"><b>112</b><span>si el peligro es inminente</span></div>
+          <div class="book-box"><div><small>Nivel</small><span>3, complejo</span></div><div><small>Duración</small><span>6 a 9 min</span></div></div>
+          <button class="btn btn-brand" data-case="n3" data-name="Mariana" aria-pressed="false">Llamar a Mariana</button>
+          <p class="status" role="status" id="status-n3"></p>
+          <p class="center">Es intenso a propósito. Usa auriculares y saluda tú primero.</p>
+          <ul class="rows">
+            <li><span>Lugar seguro esta noche</span><b>lo comprometes tú</b></li>
+            <li><span>Taxi de emergencia</span><b>hasta 80 €</b></li>
+            <li><span>Reembolso total</span><b>lo formaliza Seguridad</b></li>
+            <li class="no"><span>Poner en espera</span><b>nunca</b></li>
+          </ul>
+          <div class="total"><span>Referencia de política</span><span>100 % de la reserva (1.040 €)</span></div>
+        </div>
+        <p class="book-foot"><svg viewBox="0 0 24 24" fill="none" stroke="#6A6A6A" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6M12 7.5h.01"/></svg>Al terminar, di «fin de la simulación» para escuchar al Coach.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="limites" aria-labelledby="t-lim" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="t-lim">Tus límites de autorización</h2>
+      <p class="intro">Como agente de primer nivel resuelves la mayoría de los casos. Lo que supera tu tope se escala a supervisión o al Equipo de Seguridad, y escalar no es un error.</p>
+    </div>
+    <div class="tbl">
+      <table>
+        <thead><tr><th scope="col">Acción</th><th scope="col">Tú (primer nivel)</th><th scope="col">Supervisión</th><th scope="col">Equipo de Seguridad</th></tr></thead>
+        <tbody>
+          <tr><td>Reembolso parcial por noches afectadas</td><td>Hasta 300 € por reserva</td><td>Hasta 2.000 €</td><td>Sin tope en casos críticos</td></tr>
+          <tr><td>Reembolso total de la reserva</td><td class="no">No</td><td>Sí, con causa documentada</td><td>Sí</td></tr>
+          <tr><td>Gastos imprevistos con justificante</td><td>Hasta 60 €</td><td>Hasta 300 €</td><td>Sin tope razonable</td></tr>
+          <tr><td>Crédito de cortesía</td><td>Hasta 60 €</td><td>Hasta 250 €</td><td>Según el caso</td></tr>
+          <tr><td>Diferencia en reubicación comparable</td><td>Hasta 50 € por noche, 3 noches</td><td>Hasta 150 € por noche</td><td>Según el caso</td></tr>
+          <tr><td>Hotel fuera de la plataforma</td><td class="no">No</td><td>Hasta 250 € por noche, 2 noches</td><td>Sí, de inmediato</td></tr>
+          <tr><td>Taxi de emergencia</td><td>Solo en casos críticos, hasta 80 €</td><td>Hasta 120 €</td><td>Sin tope razonable</td></tr>
+          <tr><td>Sancionar o dar de baja a un anfitrión</td><td class="no">No, solo informar</td><td class="no">No, solo informar</td><td>Lo decide Calidad de Anuncios</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="coach" aria-labelledby="t-coach" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="t-coach">Cómo te evalúa el Coach</h2>
+      <p class="intro">Al decir «fin de la simulación», el Coach revisa tu llamada con seis criterios y te devuelve una puntuación sobre 100, dos aciertos y hasta tres mejoras.</p>
+    </div>
+    <div class="rubric">
+      <div class="score">
+        <img src="assets/coach.svg" alt="Ilustración del Coach con una lista de verificación">
+        <b>75</b><span>puntos para aprobar</span><small>y ningún error que suspenda el caso</small>
+      </div>
+      <div>
+        <div class="ratings">
+          <div class="rt"><span>Cumplimiento de política e importes</span><i style="--w:100%"></i><b>25</b></div>
+          <div class="rt"><span>Seguridad y prioridad correcta</span><i style="--w:80%"></i><b>20</b></div>
+          <div class="rt"><span>Solución práctica para el huésped</span><i style="--w:80%"></i><b>20</b></div>
+          <div class="rt"><span>Comunicación y desescalada</span><i style="--w:80%"></i><b>20</b></div>
+          <div class="rt"><span>Esperas, silencios y escalado</span><i style="--w:40%"></i><b>10</b></div>
+          <div class="rt"><span>Cierre con resumen y número de caso</span><i style="--w:20%"></i><b>5</b></div>
+        </div>
+        <div class="critical">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C13515" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20Z"/><path d="M12 10v4M12 17h.01"/></svg>
+          <p>Cada caso tiene errores que suspenden aunque la puntuación pase de 75: por ejemplo, aprobar tú solo un reembolso total o poner en espera a una huésped en peligro. Los encontrarás en las recomendaciones del Coach de cada caso.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="preguntas" aria-labelledby="t-faq" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head"><h2 id="t-faq">Preguntas frecuentes</h2></div>
+    <div class="faq">
+      <details><summary>¿Qué pasa si me equivoco durante la llamada?</summary><p>Nada. Es una práctica: el huésped simulado reacciona como lo haría uno real, incluso si aceptas algo fuera de política. El Coach te lo señala al final para que lo corrijas en el siguiente intento.</p></details>
+      <details><summary>¿Cómo pido la retroalimentación?</summary><p>Di «fin de la simulación» o «dame retroalimentación». El huésped sale del personaje y habla el Coach.</p></details>
+      <details><summary>¿Qué necesito para practicar?</summary><p>Un navegador actualizado, auriculares y permiso para usar el micrófono. Practica en un sitio sin ruido.</p></details>
+      <details><summary>¿Las políticas e importes son los oficiales?</summary><p>No. Son políticas ficticias creadas para esta demostración. En una implementación real se sustituyen por las políticas vigentes.</p></details>
+      <details><summary>¿En qué orden practico?</summary><p>Empieza por Lucía (nivel 1). Pasa a Javier cuando apruebes y deja a Mariana para el final: es el caso menos frecuente y el que no se puede fallar.</p></details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-cols">
+      <div><h4>Programa</h4><a href="#como-funciona">Cómo funciona</a><a href="#limites">Tus límites</a><a href="#coach">El Coach</a></div>
+      <div><h4>Casos</h4><a href="#caso-n1">Lucía, Valencia</a><a href="#caso-n2">Javier, Madrid</a><a href="#caso-n3">Mariana, Marbella</a></div>
+      <div><h4>Ayuda</h4><a href="#preguntas">Preguntas frecuentes</a><a href="#casos">Elegir un caso</a></div>
+    </div>
+    <div class="foot-legal">
+      <p>Sparring es un concepto de demostración preparado para el Contact Center de Airbnb en Europa. No es un sitio oficial de Airbnb ni está publicado por Airbnb.</p>
+      <p>Las políticas, reservas, personas e importes son ficticios y se sustituyen por las políticas reales en una implementación. Las ilustraciones son originales. Airbnb es una marca de Airbnb, Inc.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   WIDGETS DE ELEVENLABS
+   Para cambiar un agente, sustituye su agent-id (o pega la etiqueta
+   <elevenlabs-convai ...> completa, sin la etiqueta <script>).
+   ===================================================================== */
+const WIDGETS = {
+  n1: `agent_5301m5czee0zew2bdneaspash98h`, // Lucía, Valencia (nivel 1)
+  n2: `agent_9101m5d0q256efev51n22447x6jx`, // Javier, Madrid (nivel 2)
+  n3: `agent_0501m5d35h6new88wd9eee8gzg4c`  // Mariana, Marbella (nivel 3)
+};
+const SCRIPT_URL = "https://unpkg.com/@elevenlabs/convai-widget-embed";
+
+function agentIdFrom(value){
+  if(!value) return null;
+  const m = value.match(/agent-id\s*=\s*["']([^"']+)["']/);
+  if(m) return m[1].trim();
+  const v = value.trim();
+  return /^[\w-]+$/.test(v) ? v : null;
+}
+
+let scriptLoaded = false;
+function loadScript(){
+  if(scriptLoaded) return;
+  const s = document.createElement("script");
+  s.src = SCRIPT_URL; s.async = true; s.type = "text/javascript";
+  s.onerror = () => {
+    s.remove(); scriptLoaded = false;
+    document.querySelectorAll(".status").forEach(el => {
+      if(el.textContent) el.textContent = "No se ha podido cargar el widget. Revisa tu conexión y vuelve a pulsar el botón.";
+    });
+  };
+  document.body.appendChild(s);
+  scriptLoaded = true;
+}
+
+document.querySelectorAll("button[data-case]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const key = btn.dataset.case, name = btn.dataset.name;
+    const status = document.getElementById("status-" + key);
+    document.querySelectorAll(".status").forEach(el => el.textContent = "");
+    document.querySelectorAll("button[data-case]").forEach(b => b.setAttribute("aria-pressed","false"));
+    const id = agentIdFrom(WIDGETS[key]);
+    if(!id){
+      status.textContent = "Este caso todavía no tiene su widget. Pega el código de " + name + " en WIDGETS." + key + ", al final de index.html.";
+      return;
+    }
+    document.querySelectorAll("elevenlabs-convai").forEach(el => el.remove());
+    const w = document.createElement("elevenlabs-convai");
+    w.setAttribute("agent-id", id);
+    document.body.appendChild(w);
+    loadScript();
+    btn.setAttribute("aria-pressed","true");
+    status.textContent = "Listo. Inicia la llamada con " + name + " desde el botón que aparece en la esquina inferior de la pantalla.";
+  });
+});
+
+/* Marca en la barra de categorías la sección que se está viendo */
+const links = [...document.querySelectorAll(".cats a")];
+const targets = links.map(a => document.getElementById(a.dataset.spy)).filter(Boolean);
+if("IntersectionObserver" in window){
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        links.forEach(a => a.classList.toggle("active", a.dataset.spy === e.target.id));
+      }
+    });
+  }, {rootMargin:"-45% 0px -50% 0px"});
+  targets.forEach(t => io.observe(t));
+}
+/* Cierra el menú al elegir una opción */
+document.querySelectorAll(".menu-panel a").forEach(a => a.addEventListener("click", () => a.closest("details").removeAttribute("open")));
+</script>
+</body>
+</html>

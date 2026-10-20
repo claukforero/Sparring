@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Retrato ilustrado de Mariana, huésped del caso de Marbella, de noche hablando bajito por teléfono">
+  <rect width="400" height="400" fill="#262A40"/>
+  <circle cx="320" cy="78" r="30" fill="#FFB400"/><circle cx="334" cy="68" r="28" fill="#262A40"/>
+  <g fill="#FFFFFF"><circle cx="70" cy="60" r="3"/><circle cx="110" cy="96" r="2"/><circle cx="250" cy="44" r="2.5"/><circle cx="356" cy="150" r="2"/></g>
+  <path d="M78 400 C78 302 138 272 200 272 C262 272 322 302 322 400 Z" fill="#FFC2CE"/>
+  <path d="M176 274 Q200 296 224 274" fill="none" stroke="#F293A6" stroke-width="6"/>
+  <rect x="178" y="226" width="44" height="54" rx="14" fill="#E8B896"/>
+  <circle cx="200" cy="96" r="30" fill="#6B4A2E"/>
+  <ellipse cx="200" cy="182" rx="62" ry="72" fill="#E8B896"/>
+  <ellipse cx="261" cy="188" rx="11" ry="16" fill="#D6A27E"/>
+  <path d="M138 176 C136 128 166 108 200 108 C234 108 264 128 262 176 C248 150 226 138 200 138 C174 138 152 150 138 176 Z" fill="#6B4A2E"/>
+  <path d="M164 168 L190 160" stroke="#4A321E" stroke-width="5" stroke-linecap="round"/>
+  <path d="M236 168 L210 160" stroke="#4A321E" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="178" cy="186" r="5.5" fill="#1E1210"/><circle cx="222" cy="186" r="5.5" fill="#1E1210"/>
+  <path d="M200 194 q-5 14 4 16" fill="none" stroke="#B77E5A" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="200" cy="226" rx="9" ry="7" fill="#8A3F45"/>
+  <circle cx="132" cy="186" r="46" fill="#FFB400" opacity=".18"/>
+  <rect x="114" y="150" width="34" height="62" rx="9" fill="#FFB400" transform="rotate(-14 131 181)"/>
+  <ellipse cx="124" cy="222" rx="24" ry="20" fill="#E8B896"/>
+  <g transform="translate(326 318)">
+    <path d="M-16 -8 v-12 a16 16 0 0 1 32 0 v12" fill="none" stroke="#FFFFFF" stroke-width="6"/>
+    <rect x="-24" y="-10" width="48" height="40" rx="8" fill="#FF385C"/>
+    <circle cx="0" cy="8" r="5" fill="#262A40"/>
+  </g>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Sparring">
+  <circle cx="24" cy="24" r="24" fill="#FF385C"/>
+  <path d="M13 26v-3a11 11 0 0 1 22 0v3" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/>
+  <rect x="10.5" y="24" width="6" height="9" rx="3" fill="#fff"/>
+  <rect x="31.5" y="24" width="6" height="9" rx="3" fill="#fff"/>
+  <path d="M34.5 33c0 3.5-3 5-7 5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+  <circle cx="26.5" cy="38" r="2.2" fill="#fff"/>
+</svg>
